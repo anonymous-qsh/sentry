@@ -1,11 +1,10 @@
 import React from 'react';
-import {ThemeProvider} from 'emotion-theming';
 import {mount} from 'enzyme';
 
 import {Client} from 'app/api';
 
 import ProjectGeneralSettings from 'app/views/projectGeneralSettings';
-import theme from 'app/utils/theme';
+import {mountWithTheme} from '../../../helpers';
 
 jest.mock('jquery');
 
@@ -28,10 +27,8 @@ describe('projectGeneralSettings', function() {
   });
 
   it('renders form fields', function() {
-    let wrapper = mount(
-      <ThemeProvider theme={theme}>
-        <ProjectGeneralSettings params={{orgId: org.slug, projectId: project.slug}} />
-      </ThemeProvider>,
+    let wrapper = mountWithTheme(
+      <ProjectGeneralSettings params={{orgId: org.slug, projectId: project.slug}} />,
       TestStubs.routerContext()
     );
 
@@ -70,10 +67,8 @@ describe('projectGeneralSettings', function() {
     let routerContext = TestStubs.routerContext();
     routerContext.context.organization.dataScrubber = true;
     routerContext.context.organization.scrubIPAddresses = false;
-    let wrapper = mount(
-      <ThemeProvider theme={theme}>
-        <ProjectGeneralSettings params={{orgId: org.slug, projectId: project.slug}} />
-      </ThemeProvider>,
+    let wrapper = mountWithTheme(
+      <ProjectGeneralSettings params={{orgId: org.slug, projectId: project.slug}} />,
       routerContext
     );
     expect(wrapper.find('Switch[name="scrubIPAddresses"]').prop('isDisabled')).toBe(
@@ -90,10 +85,8 @@ describe('projectGeneralSettings', function() {
       method: 'DELETE',
     });
 
-    let wrapper = mount(
-      <ThemeProvider theme={theme}>
-        <ProjectGeneralSettings params={{orgId: org.slug, projectId: project.slug}} />
-      </ThemeProvider>,
+    let wrapper = mountWithTheme(
+      <ProjectGeneralSettings params={{orgId: org.slug, projectId: project.slug}} />,
       TestStubs.routerContext()
     );
 
@@ -117,9 +110,7 @@ describe('projectGeneralSettings', function() {
     });
 
     let wrapper = mount(
-      <ThemeProvider theme={theme}>
-        <ProjectGeneralSettings params={{orgId: org.slug, projectId: project.slug}} />
-      </ThemeProvider>,
+      <ProjectGeneralSettings params={{orgId: org.slug, projectId: project.slug}} />,
       TestStubs.routerContext()
     );
 
@@ -151,9 +142,7 @@ describe('projectGeneralSettings', function() {
     let routerContext = TestStubs.routerContext();
     routerContext.context.organization.access = ['org:read'];
     let wrapper = mount(
-      <ThemeProvider theme={theme}>
-        <ProjectGeneralSettings params={{orgId: org.slug, projectId: project.slug}} />
-      </ThemeProvider>,
+      <ProjectGeneralSettings params={{orgId: org.slug, projectId: project.slug}} />,
       routerContext
     );
 
