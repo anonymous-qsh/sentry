@@ -147,9 +147,21 @@ const ProjectUserReports = createReactClass({
 
   renderStreamBody() {
     if (this.state.loading) {
-      return <LoadingIndicator />;
+      return (
+        <Panel>
+          <PanelBody>
+            <LoadingIndicator />
+          </PanelBody>
+        </Panel>
+      );
     } else if (this.state.error) {
-      return <LoadingError onRetry={this.fetchData} />;
+      return (
+        <Panel>
+          <PanelBody>
+            <LoadingError onRetry={this.fetchData} />
+          </PanelBody>
+        </Panel>
+      );
     } else if (this.state.reportList.length > 0) {
       return this.renderResults();
     } else if (this.state.query && this.state.query !== this.props.defaultQuery) {
@@ -210,7 +222,11 @@ const ProjectUserReports = createReactClass({
       );
     });
 
-    return <div className="issue-list">{children}</div>;
+    return (
+      <Panel>
+        <PanelBody className="issue-list">{children}</PanelBody>
+      </Panel>
+    );
   },
 
   render() {
@@ -241,9 +257,7 @@ const ProjectUserReports = createReactClass({
             </div>
           </div>
         </div>
-        <Panel>
-          <PanelBody>{this.renderStreamBody()}</PanelBody>
-        </Panel>
+        {this.renderStreamBody()}
         <Pagination pageLinks={this.state.pageLinks} />
       </div>
     );

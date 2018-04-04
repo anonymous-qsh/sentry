@@ -316,7 +316,7 @@ describe('Stream', function() {
         loading: false,
         dataLoading: false,
       });
-      expect(wrapper.find('.empty-stream').length).toBeTruthy();
+      expect(wrapper.find('EmptyStateWarning').length).toBeTruthy();
     });
 
     it('shows "awaiting events" message when no events have been sent', function() {

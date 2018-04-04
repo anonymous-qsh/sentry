@@ -4,8 +4,11 @@ import React from 'react';
 import createReactClass from 'create-react-class';
 import styled from 'react-emotion';
 
+import SentryTypes from '../proptypes';
 import {t} from '../locale';
+
 import ApiMixin from '../mixins/apiMixin';
+
 import Button from '../components/buttons/button';
 import Confirm from '../components/confirm';
 import IndicatorStore from '../stores/indicatorStore';
@@ -13,7 +16,7 @@ import LoadingError from '../components/loadingError';
 import LoadingIndicator from '../components/loadingIndicator';
 import {Panel, PanelBody, PanelHeader, PanelItem} from '../components/panels';
 import SettingsPageHeader from './settings/components/settingsPageHeader';
-import SentryTypes from '../proptypes';
+import EmptyStateWarning from '../components/emptyStateWarning';
 
 const InputColumn = props => <Flex flex="1" justify="center" {...props} />;
 
@@ -225,10 +228,9 @@ const ProjectSavedSearches = createReactClass({
 
   renderEmpty() {
     return (
-      <div className="box empty-stream">
-        <span className="icon icon-exclamation" />
+      <EmptyStateWarning>
         <p>{t('There are no saved searches for this project.')}</p>
-      </div>
+      </EmptyStateWarning>
     );
   },
 

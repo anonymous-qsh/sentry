@@ -256,7 +256,7 @@ exports[`ProjectSavedSearches renders 1`] = `
                             >
                               <SearchTitle>
                                 <div
-                                  className="css-225nrx-SearchTitle css-ipros10"
+                                  className="css-225nrx-SearchTitle css-y045y10"
                                 >
                                   Needs Triage
                                 </div>
@@ -513,7 +513,7 @@ exports[`ProjectSavedSearches renders 1`] = `
                             >
                               <SearchTitle>
                                 <div
-                                  className="css-225nrx-SearchTitle css-ipros10"
+                                  className="css-225nrx-SearchTitle css-y045y10"
                                 >
                                   Unresolved Issues
                                 </div>
@@ -750,16 +750,46 @@ exports[`ProjectSavedSearches renders empty 1`] = `
         </div>
       </Wrapper>
     </SettingsPageHeading>
-    <div
-      className="box empty-stream"
-    >
-      <span
-        className="icon icon-exclamation"
-      />
-      <p>
-        There are no saved searches for this project.
-      </p>
-    </div>
+    <EmptyStateWarning>
+      <Panel
+        className="ref-empty-state"
+      >
+        <StyledPanel
+          className="ref-empty-state"
+        >
+          <div
+            className="ref-empty-state css-wfa8ap-StyledPanel css-5bw71w0"
+          >
+            <PanelBody
+              direction="column"
+              disablePadding={true}
+              flex={false}
+            >
+              <div
+                className=""
+              >
+                <EmptyStreamWrapper>
+                  <div
+                    className="css-n38n5f-EmptyStreamWrapper css-1jal98q0"
+                  >
+                    <Icon
+                      className="icon icon-exclamation"
+                    >
+                      <div
+                        className="icon icon-exclamation css-1xqhcr3-Icon css-1jal98q1"
+                      />
+                    </Icon>
+                    <p>
+                      There are no saved searches for this project.
+                    </p>
+                  </div>
+                </EmptyStreamWrapper>
+              </div>
+            </PanelBody>
+          </div>
+        </StyledPanel>
+      </Panel>
+    </EmptyStateWarning>
   </div>
 </ProjectSavedSearches>
 `;

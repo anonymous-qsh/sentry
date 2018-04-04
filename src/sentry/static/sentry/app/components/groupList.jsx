@@ -14,7 +14,6 @@ import ProjectState from '../mixins/projectState';
 import StreamGroup from './stream/group';
 import utils from '../utils';
 import {t} from '../locale';
-import {Panel, PanelBody} from './panels';
 import EmptyStateWarning from '../components/emptyStateWarning';
 
 const GroupList = createReactClass({
@@ -131,13 +130,9 @@ const GroupList = createReactClass({
     else if (this.state.error) return <LoadingError onRetry={this.fetchData} />;
     else if (this.state.groupIds.length === 0)
       return (
-        <Panel>
-          <PanelBody>
-            <EmptyStateWarning>
-              {t("There doesn't seem to be any events fitting the query.")}
-            </EmptyStateWarning>
-          </PanelBody>
-        </Panel>
+        <EmptyStateWarning>
+          {t("There doesn't seem to be any events fitting the query.")}
+        </EmptyStateWarning>
       );
 
     let wrapperClass;

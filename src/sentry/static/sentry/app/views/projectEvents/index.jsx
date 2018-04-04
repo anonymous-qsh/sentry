@@ -16,6 +16,7 @@ import Pagination from '../../components/pagination';
 import SearchBar from '../../components/searchBar';
 import {t} from '../../locale';
 import withEnvironmentInQueryString from '../../utils/withEnvironmentInQueryString';
+import EmptyStateWarning from '../../components/emptyStateWarning';
 
 const ProjectEvents = createReactClass({
   displayName: 'ProjectEvents',
@@ -151,19 +152,17 @@ const ProjectEvents = createReactClass({
 
   renderNoQueryResults() {
     return (
-      <div className="box empty-stream">
-        <span className="icon icon-exclamation" />
+      <EmptyStateWarning>
         <p>{t('Sorry, no events match your filters.')}</p>
-      </div>
+      </EmptyStateWarning>
     );
   },
 
   renderEmpty() {
     return (
-      <div className="box empty-stream">
-        <span className="icon icon-exclamation" />
+      <EmptyStateWarning>
         <p>{t("There don't seem to be any events.")}</p>
-      </div>
+      </EmptyStateWarning>
     );
   },
 

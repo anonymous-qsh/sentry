@@ -1,13 +1,18 @@
 import React from 'react';
 import styled from 'react-emotion';
+import {Panel, PanelBody} from './panels';
 
 class EmptyStateWarning extends React.Component {
   render() {
     return (
-      <EmptyStreamWrapper>
-        <Icon className="icon icon-exclamation" />
-        {this.props.children}
-      </EmptyStreamWrapper>
+      <Panel className="ref-empty-state">
+        <PanelBody>
+          <EmptyStreamWrapper>
+            <Icon className="icon icon-exclamation" />
+            {this.props.children}
+          </EmptyStreamWrapper>
+        </PanelBody>
+      </Panel>
     );
   }
 }

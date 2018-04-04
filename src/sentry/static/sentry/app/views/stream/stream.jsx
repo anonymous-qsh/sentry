@@ -21,6 +21,7 @@ import LoadingIndicator from '../../components/loadingIndicator';
 import ProjectState from '../../mixins/projectState';
 import Pagination from '../../components/pagination';
 import StreamGroup from '../../components/stream/group';
+import EmptyStateWarning from '../../components/emptyStateWarning';
 import StreamActions from './../stream/actions';
 import StreamFilters from './../stream/filters';
 import StreamSidebar from './../stream/sidebar';
@@ -677,10 +678,9 @@ const Stream = createReactClass({
       : t('Sorry, no events match your filters.');
 
     return (
-      <div className="box empty-stream">
-        <span className="icon icon-exclamation" />
+      <EmptyStateWarning>
         <p>{message}</p>
-      </div>
+      </EmptyStateWarning>
     );
   },
 
