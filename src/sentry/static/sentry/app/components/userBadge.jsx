@@ -47,6 +47,8 @@ const StyledNameAndEmail = styled('div')`
 
 const StyledEmail = styled('div')`
   font-size: 0.875em;
+  margin-top: 4px;
+  color: ${p => p.theme.gray2};
   ${overflowEllipsis};
 `;
 
