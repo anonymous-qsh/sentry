@@ -4,27 +4,24 @@ import React from 'react';
 import styled from 'react-emotion';
 
 import {t, tct} from '../../../../locale';
-import Avatar from '../../../../components/avatar';
 import Button from '../../../../components/buttons/button';
 import UserBadge from '../../../../components/userBadge';
 import Confirm from '../../../../components/confirm';
-import Link from '../../../../components/link';
 import LoadingIndicator from '../../../../components/loadingIndicator';
 import {PanelItem} from '../../../../components/panels';
 import SentryTypes from '../../../../proptypes';
 import Tooltip from '../../../../components/tooltip';
-import recreateRoute from '../../../../utils/recreateRoute';
 import space from '../../../../styles/space';
 
 export default class OrganizationMemberRow extends React.PureComponent {
   static propTypes = {
-    routes: PropTypes.array,
     // XXX: Spreading this does not work :(
     member: SentryTypes.Member,
     onRemove: PropTypes.func.isRequired,
     onLeave: PropTypes.func.isRequired,
     onSendInvite: PropTypes.func.isRequired,
     orgName: PropTypes.string.isRequired,
+    orgId: PropTypes.string,
     memberCanLeave: PropTypes.bool,
     requireLink: PropTypes.bool,
     canRemoveMembers: PropTypes.bool,
@@ -66,8 +63,6 @@ export default class OrganizationMemberRow extends React.PureComponent {
 
   render() {
     let {
-      params,
-      routes,
       member,
       orgName,
       orgId,
@@ -79,7 +74,7 @@ export default class OrganizationMemberRow extends React.PureComponent {
       canAddMembers,
     } = this.props;
 
-    let {id, flags, email, name, roleName, pending, user} = member;
+    let {flags, email, name, roleName, pending, user} = member;
 
     // if member is not the only owner, they can leave
     let needsSso = !flags['sso:linked'] && requireLink;
@@ -90,7 +85,6 @@ export default class OrganizationMemberRow extends React.PureComponent {
     // member has a `user` property if they are registered with sentry
     // i.e. has accepted an invite to join org
     let has2fa = user && user.has2fa;
-    let detailsUrl = recreateRoute(id, {routes, params});
     let isInviteSuccessful = status === 'success';
     let isInviting = status === 'loading';
 
@@ -226,4 +220,5 @@ export default class OrganizationMemberRow extends React.PureComponent {
 
 const StyledUserBadge = styled(UserBadge)`
   padding: 0 ${space(2)};
+  flex-grow: 1;
 `;
