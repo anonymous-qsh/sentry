@@ -6,6 +6,7 @@ import styled from 'react-emotion';
 import {t, tct} from '../../../../locale';
 import Avatar from '../../../../components/avatar';
 import Button from '../../../../components/buttons/button';
+import UserBadge from '../../../../components/userBadge';
 import Confirm from '../../../../components/confirm';
 import Link from '../../../../components/link';
 import LoadingIndicator from '../../../../components/loadingIndicator';
@@ -13,15 +14,7 @@ import {PanelItem} from '../../../../components/panels';
 import SentryTypes from '../../../../proptypes';
 import Tooltip from '../../../../components/tooltip';
 import recreateRoute from '../../../../utils/recreateRoute';
-
-const UserName = styled(Link)`
-  font-size: 16px;
-`;
-
-const Email = styled.div`
-  color: ${p => p.theme.gray3};
-  font-size: 14px;
-`;
+import space from '../../../../styles/space';
 
 export default class OrganizationMemberRow extends React.PureComponent {
   static propTypes = {
@@ -77,6 +70,7 @@ export default class OrganizationMemberRow extends React.PureComponent {
       routes,
       member,
       orgName,
+      orgId,
       status,
       requireLink,
       memberCanLeave,
@@ -102,16 +96,7 @@ export default class OrganizationMemberRow extends React.PureComponent {
 
     return (
       <PanelItem align="center" p={0} py={2}>
-        <Box pl={2}>
-          <Avatar size={32} user={user ? user : {email}} />
-        </Box>
-
-        <Box pl={1} pr={2} flex="1">
-          <h5 style={{margin: '0 0 3px'}}>
-            <UserName to={detailsUrl}>{name}</UserName>
-          </h5>
-          <Email>{email}</Email>
-        </Box>
+        <StyledUserBadge avatarSize={36} user={user} orgId={orgId} />
 
         <Box px={2} w={180}>
           {needsSso || pending ? (
@@ -238,3 +223,7 @@ export default class OrganizationMemberRow extends React.PureComponent {
     );
   }
 }
+
+const StyledUserBadge = styled(UserBadge)`
+  padding: 0 ${space(2)};
+`;

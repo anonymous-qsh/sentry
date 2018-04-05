@@ -7,11 +7,9 @@ import overflowEllipsis from '../styles/overflowEllipsis';
 import space from '../styles/space';
 
 const UserBadge = ({user, orgId, avatarSize, useLink, ...props}) => {
-  const LinkOrText = useLink ? (
-    <StyledLink to={`/settings/${orgId}/members/${user.id}`} />
-  ) : (
-    'div'
-  );
+  const LinkOrText = useLink
+    ? props => <StyledLink to={`/settings/${orgId}/members/${user.id}`} {...props} />
+    : 'div';
 
   return (
     <StyledUserBadge {...props}>
@@ -32,7 +30,7 @@ UserBadge.propTypes = {
 };
 
 UserBadge.defaultProps = {
-  userLink: true,
+  useLink: true,
 };
 
 const StyledUserBadge = styled('div')`
