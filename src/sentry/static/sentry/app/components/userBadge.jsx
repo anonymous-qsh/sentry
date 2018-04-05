@@ -8,7 +8,7 @@ import space from '../styles/space';
 
 const UserBadge = ({user, orgId, avatarSize, useLink, ...props}) => {
   const LinkOrText = useLink
-    ? props => <StyledLink to={`/settings/${orgId}/members/${user.id}`} {...props} />
+    ? p => <StyledLink to={`/settings/${orgId}/members/${user.id}`} {...p} />
     : 'div';
 
   return (
@@ -58,8 +58,8 @@ const StyledLink = styled(Link)`
 `;
 
 const StyledAvatar = styled(props => <Avatar {...props} />)`
-  width: ${space(3)};
-  height: ${space(3)};
+  min-width: ${space(3)};
+  min-height: ${space(3)};
   margin-right: ${space(1)};
 `;
 
