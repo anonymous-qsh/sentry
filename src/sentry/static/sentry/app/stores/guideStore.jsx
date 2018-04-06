@@ -18,8 +18,6 @@ const GuideStore = Reflux.createStore({
       // The current step of the current guide (1-indexed). 0 if there's no guide
       // or the guide is just cued but not opened.
       currentStep: 0,
-
-      isDrawerOpen: false,
     };
     this.listenTo(GuideActions.fetchSucceeded, this.onFetchSucceeded);
     this.listenTo(GuideActions.closeGuideOrSupport, this.onCloseGuideOrSupport);
@@ -44,7 +42,9 @@ const GuideStore = Reflux.createStore({
   },
 
   onOpenDrawer() {
-    this.state.isDrawerOpen = true;
+    if (this.state.currentStep < 1) {
+      this.state.currentStep = 1;
+    }
     this.updateCurrentGuide();
   },
 
@@ -94,7 +94,6 @@ const GuideStore = Reflux.createStore({
     }
 
     this.state.currentGuide = bestGuide;
-    this.state.currentStep = window.location.hash === '#assistant' ? 1 : 0;
     this.trigger(this.state);
   },
 });
